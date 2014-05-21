@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = window.React = require('react'); // for chrome dev tools
 
 var FluxChat = require('./components/FluxChat.react');
 
