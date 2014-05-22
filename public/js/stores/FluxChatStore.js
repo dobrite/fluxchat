@@ -42,6 +42,10 @@ var connect = function (channel) {
   console.log("connecting...");
 };
 
+var sendMessage = function (message) {
+  console.log("sending message", message);
+};
+
 var FluxChatStore = merge(EventEmitter.prototype, {
 
   // 'public' functions
@@ -61,6 +65,10 @@ AppDispatcher.register(function (payload) {
 
     case FluxChatConstants.PUSHSTREAM_CONNECT:
       connect(action.channel);
+    break;
+
+    case FluxChatConstants.CHAT_SEND_MESSAGE:
+      sendMessage(action.message);
     break;
 
     default:

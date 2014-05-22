@@ -13,6 +13,17 @@ var AppDispatcher = merge(Dispatcher.prototype, {
       source: 'PUSH_ACTION',
       action: action
     });
+  },
+
+  /**
+   * Handles all view actions
+   * @param {object} action The data from the view
+   */
+  handleViewAction: function (action) {
+    this.dispatch({
+      source: 'VIEW_ACTION',
+      action: action
+    });
   }
 
 });

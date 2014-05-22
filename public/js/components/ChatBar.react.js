@@ -2,6 +2,8 @@
 
 var React = require('react');
 
+var FluxChatActions = require('../actions/FluxChatActions');
+
 var ChatBar = React.createClass({
 
   /**
@@ -10,11 +12,25 @@ var ChatBar = React.createClass({
   render: function () {
     return (
       <form>
-        <input type="text" />
-        <input type="button" value="Say!" />
+        <input id="sayInput" type="text" />
+        <input
+          id="sayButton"
+          type="button"
+          value="Say!"
+          onClick={this._onSayButtonClick}
+        />
       </form>
     )
   },
+
+  /**
+   * Event handler to send chat message
+   */
+  _onSayButtonClick: function (event) {
+    debugger
+    console.log(event);
+    FluxChatActions.sendMessage(event.target.value);
+  }
 
 });
 
