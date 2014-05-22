@@ -10,7 +10,8 @@ var FluxChatActions = {
     AppDispatcher.handlePushAction({
       actionType: FluxChatConstants.CHANNEL_SUBSCRIBE
     });
-  },
+  }
+
 };
 
 module.exports = FluxChatActions;

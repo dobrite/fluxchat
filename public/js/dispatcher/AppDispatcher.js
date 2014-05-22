@@ -14,4 +14,5 @@ var AppDispatcher = merge(Dispatcher.prototype, {
       action: action
     });
   }
+
 });
