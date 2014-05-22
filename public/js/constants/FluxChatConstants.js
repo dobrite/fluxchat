@@ -1,6 +1,6 @@
 var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
-  CHANNEL_SUBSCRIBE: null,
-  CHANNEL_ONMESSAGE: null
+  PUSHSTREAM_INITIALIZE: null,
+  PUSHSTREAM_CONNECT: null
 });

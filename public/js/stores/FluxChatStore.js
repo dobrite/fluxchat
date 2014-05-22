@@ -5,32 +5,62 @@ var merge = require('react/lib/merge');
 
 var CHANGE_EVENT= 'change';
 
-var subscribe = function () {
+// 'private' functions
+
+var initialize = function () {
   // Global for now
   PushStream.LOG_LEVEL = 'debug';
-  var pushstream = new PushStream({
+  var pushstream = window.pushstream = new PushStream({
     host: window.location.hostname,
-    port: window.location.port,
+    port: 8080, //window.location.port,
     modes: "websocket|eventsource|stream"
   });
 
-  pushstream.onmessage = _manageEvent;
-  pushstream.onstatuschange = _statusChanged;
+  pushstream.onmessage = manageEvent;
+  pushstream.onstatuschange = statusChange;
 
 };
 
+var manageEvent = function (event) {
+  console.log("me", event);
+};
+
+var statusChange = function (status) {
+  console.log("sc", status);
+};
+
+var connect = function (channel) {
+  pushstream.removeAllChannels();
+
+  try {
+    pushstream.addChannel(channel);
+    pushstream.connect(channel);
+  } catch (e) {
+    alert(e);
+  }
+
+  console.log("connecting...");
+};
+
 var FluxChatStore = merge(EventEmitter.prototype, {
+
+  // 'public' functions
   emitChange: function () {
     this.emit(CHANGE_EVENT);
   }
+
 });
 
 AppDispatcher.register(function (payload) {
   var action = payload.action;
 
-  switch(action.actionType) {
-    case FluxChatConstants.CHANNEL_SUBSCRIBE:
-      subscribe();
+  switch (action.actionType) {
+    case FluxChatConstants.PUSHSTREAM_INITIALIZE:
+      initialize();
+    break;
+
+    case FluxChatConstants.PUSHSTREAM_CONNECT:
+      connect(action.channel);
     break;
 
     default:
