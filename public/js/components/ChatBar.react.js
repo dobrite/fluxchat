@@ -19,9 +19,9 @@ var ChatBar = React.createClass({
    */
   render: function () {
     return (
-      <form class="say-form">
+      <form className="say-form">
         <input
-          class="say-form__input"
+          className="say-form__input"
           type="text"
           value={this.state.sayFormInputValue}
           ref="sayFormInput"
@@ -29,7 +29,7 @@ var ChatBar = React.createClass({
           onChange={this._onChange}
         />
         <input
-          class="say-form__button"
+          className="say-form__button"
           type="button"
           value="Say!"
           onClick={this._onButtonClick}
