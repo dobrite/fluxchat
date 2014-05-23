@@ -1,16 +1,20 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var FluxChatConstants = require('../constants/FluxChatConstants');
-var EventEmitter = require('events').EventEmitter;
-var merge = require('react/lib/merge');
+var AppDispatcher = require('../dispatcher/AppDispatcher'),
+    FluxChatConstants = require('../constants/FluxChatConstants'),
+    EventEmitter = require('events').EventEmitter,
+    merge = require('react/lib/merge');
 
-var CHANGE_EVENT= 'change';
+var CHANGE_EVENT= 'change',
+    pushstream;
+
 
 // 'private' functions
 
 var initialize = function () {
-  // Global for now
+
+  //Global for now TODO convert to commonJS
   PushStream.LOG_LEVEL = 'debug';
-  var pushstream = window.pushstream = new PushStream({
+
+  pushstream = window.pushstream = new PushStream({
     host: window.location.hostname,
     port: 8080, //window.location.port,
     modes: "websocket|eventsource|stream"
@@ -43,7 +47,7 @@ var connect = function (channel) {
 };
 
 var sendMessage = function (message) {
-  console.log("sending message", message);
+  pushstream.sendMessage(message);
 };
 
 var FluxChatStore = merge(EventEmitter.prototype, {
