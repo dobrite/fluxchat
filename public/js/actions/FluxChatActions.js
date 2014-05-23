@@ -24,7 +24,7 @@ var FluxChatActions = {
   },
 
   /**
-   * Send a chat message up to the cloud!
+   * Send a chat message to the cloud!
    * @param {string} message
    */
   sendMessage: function (message) {
