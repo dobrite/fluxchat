@@ -1,23 +1,33 @@
 /** @jsx React.DOM */
 
 var React = require('react');
+var Message = require('Message.react');
 
 var MessagePane = React.createClass({
 
   /**
    * @return {object}
    */
-  render: function () {
-    var messages = [];
+  getDefaultProps: function () {
+    return {
+      messages: []
+    };
+  },
 
+  /**
+   * @return {object}
+   */
+  render: function () {
     return (
       <section id="MessagePane">
         <ol id="messages">
-          {messages}
+          {this.props.messages.map(function (message) {
+            return <Message />;
+          })}
         </ol>
       </section>
     )
-  },
+  }
 
 });
 

@@ -4,7 +4,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
     merge = require('react/lib/merge');
 
 var CHANGE_EVENT= 'change',
-    pushstream;
+    pushstream,
+    _messages = [];
 
 
 // 'private' functions
