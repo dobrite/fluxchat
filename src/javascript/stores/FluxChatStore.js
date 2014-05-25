@@ -32,7 +32,7 @@ var initialize = function () {
 
   pushstream = window.pushstream = new PushStream({
     host: window.location.hostname,
-    port: 8080, //window.location.port,
+    port: 9080, //window.location.port,
     modes: "websocket|eventsource|stream"
   });
 
