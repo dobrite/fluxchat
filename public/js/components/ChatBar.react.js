@@ -48,9 +48,7 @@ var ChatBar = React.createClass({
       event.preventDefault();
       FluxChatActions.sendMessage(event.target.value);
       this.setState({sayFormInputValue: ''});
-    }// else {
-    //this.setState({sayFormInput: event.target.value});
-    //}
+    }
   },
 
   /**

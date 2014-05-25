@@ -8,6 +8,21 @@ var CHANGE_EVENT= 'change',
     _messages = [];
 
 
+_messages = {
+  1: {
+    id: 1,
+    text: "YO!",
+  },
+  2: {
+    id: 3,
+    text: "Word up!",
+  },
+  3: {
+    id: 3,
+    text: "third",
+  },
+};
+
 // 'private' functions
 
 var initialize = function () {
@@ -26,8 +41,12 @@ var initialize = function () {
 
 };
 
-var manageEvent = function (event) {
-  console.log("me", event);
+var manageEvent = function (data, id, channel, eventid, isLastMessageFromBatch) {
+  if (data === '') {
+    return;
+  }
+  _messages[id] = JSON.parse(data);
+  FluxChatStore.emitChange();
 };
 
 var statusChange = function (status) {
@@ -47,13 +66,25 @@ var connect = function (channel) {
   console.log("connecting...");
 };
 
-var sendMessage = function (message) {
-  pushstream.sendMessage(message);
+var sendMessage = function (text) {
+
+  var message = {
+    text: text,
+    nick: 'Nick'
+  };
+
+  //TODO can take a success and error callback
+  //i.e. sendMessage(message, successCB, errorCB);
+  pushstream.sendMessage(JSON.stringify(message));
 };
 
 var FluxChatStore = merge(EventEmitter.prototype, {
 
   // 'public' functions
+  getAll: function () {
+    return _messages;
+  },
+
   emitChange: function () {
     this.emit(CHANGE_EVENT);
   }
