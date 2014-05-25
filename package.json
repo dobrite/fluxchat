@@ -8,12 +8,16 @@
     "react": "~0.9"
   },
   "devDependencies": {
-    "browserify": "~2.36.0",
+    "gulp": "~3.6.0",
+    "gulp-notify": "~1.2.4",
+    "gulp-livereload": "~1.2.0",
+    "browserify": "~3.36.0",
+    "coffeeify": "~0.6.0",
     "envify": "~1.2.0",
     "reactify": "~0.4.0",
     "statics": "~0.1.0",
     "uglify-js": "~2.4.13",
-    "watchify": "~0.4.1"
+    "vinyl-source-stream": "~0.1.1"
   },
   "scripts": {
     "start": "STATIC_ROOT=./public watchify -o public/js/bundle.js -v -d .",
@@ -25,6 +29,7 @@
   "license": "MIT",
   "browserify": {
     "transform": [
+      "coffeeify",
       "reactify",
       "envify"
     ]
