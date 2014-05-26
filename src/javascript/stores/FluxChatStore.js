@@ -75,7 +75,12 @@ var sendMessage = function (text) {
 
   //TODO can take a success and error callback
   //i.e. sendMessage(message, successCB, errorCB);
-  pushstream.sendMessage(JSON.stringify(message));
+  //pushstream.sendMessage(JSON.stringify(message));
+  //TODO lock down even localhost
+  var request = new XMLHttpRequest();
+  request.open('POST', '/pub', true);
+  request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+  request.send(JSON.stringify(message));
 };
 
 var FluxChatStore = merge(EventEmitter.prototype, {
