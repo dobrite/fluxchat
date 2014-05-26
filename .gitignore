@@ -3,6 +3,9 @@
 *.a
 *.so
 
+# gin
+gin-bin
+
 # Folders
 _obj
 _test
