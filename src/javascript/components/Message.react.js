@@ -16,7 +16,7 @@ var Message = React.createClass({
     var message = this.props.message;
 
     return (
-      <li key={message.id}>{message.text}</li>
+      <li key={message.timestamp}>{message.timestamp} {message.text}</li>
     )
   }
 });

@@ -10,11 +10,13 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 type Message struct {
-	Text string `json:"text" binding:"required"`
-	Nick string `json:"nick" binding:"required"`
+	Text      string    `json:"text" binding:"required"`
+	Nick      string    `json:"nick" binding:"required"`
+	Timestamp time.Time `json:"timestamp"`
 }
 
 func escape(str string) string {
@@ -31,14 +33,15 @@ func bytesToString(input []byte) string {
 
 func publish(message []byte) {
 	str := bytesToString(message)
-	rd := strings.NewReader(escape(str))
+	esc := escape(str)
 	// seems like this would block? goroutine?
 	// TODO un-hardcode channel
 	url := "http://localhost:9080/pub?id=example"
-	_, err := http.Post(url, "application/json", rd)
+	resp, err := http.Post(url, "application/json", strings.NewReader(esc))
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer resp.Body.Close()
 	// do we want to return something here?
 }
 
@@ -52,11 +55,15 @@ func main() {
 		res.Write(contents)
 		return ""
 	})
-	m.Post("/pub", binding.Bind(Message{}), func(message Message) string {
+	m.Post("/pub", binding.Bind(Message{}), func(args martini.Params, message Message) string {
+		t := time.Now().UTC()
+		log.Println(args["channel"])
+		message.Timestamp = t
 		m, err := json.Marshal(message)
 		if err != nil {
 			log.Fatal(err)
 		}
+		// auth type stuff goes here
 		publish(m)
 		return "" //actually return something
 	})

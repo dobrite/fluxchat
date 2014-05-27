@@ -22,8 +22,8 @@ var MessagePane = React.createClass({
     }
 
     return (
-      <section id="MessagePane">
-        <ol id="messages">
+      <section>
+        <ol>
           {messages}
         </ol>
       </section>

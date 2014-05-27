@@ -9,17 +9,20 @@ var CHANGE_EVENT= 'change',
 
 
 _messages = {
-  1: {
+  1401123696308: {
     id: 1,
     text: "YO!",
+    timestamp: "2014-05-26T17:01:36.308741214Z",
   },
-  2: {
-    id: 3,
+  1401123697308: {
+    id: 2,
     text: "Word up!",
+    timestamp: "2014-05-26T17:01:37.308741214Z",
   },
-  3: {
+  1401123698308: {
     id: 3,
     text: "third",
+    timestamp: "2014-05-26T17:01:38.308741214Z",
   },
 };
 
@@ -42,10 +45,10 @@ var initialize = function () {
 };
 
 var manageEvent = function (data, id, channel, eventid, isLastMessageFromBatch) {
-  if (data === '') {
-    return;
-  }
-  _messages[id] = JSON.parse(data);
+  if (data === '') return;
+  var message = JSON.parse(data),
+      timestamp = new Date(message.timestamp).getTime();
+  _messages[timestamp] = message;
   FluxChatStore.emitChange();
 };
 
