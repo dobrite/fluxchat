@@ -17,7 +17,15 @@
     "coffee-reactify": "~> 0.1.2",
     "statics": "~0.1.0",
     "uglify-js": "~2.4.13",
-    "vinyl-source-stream": "~0.1.1"
+    "vinyl-source-stream": "~0.1.1",
+    "karma": "~0.12.16",
+    "mocha": "~1.20.0",
+    "karma-mocha": "~0.1.3",
+    "chai": "~1.9.1",
+    "karma-chai": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.4",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-browserify": "~0.2.1"
   },
   "scripts": {
     "start": "STATIC_ROOT=./public watchify -o public/js/bundle.js -v -d .",
