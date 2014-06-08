@@ -8,13 +8,12 @@
     "react": "~0.9"
   },
   "devDependencies": {
-    "gulp": "~3.6.0",
+    "gulp": "~3.7.0",
     "gulp-notify": "~1.2.4",
     "gulp-livereload": "~1.2.0",
     "browserify": "~3.36.0",
     "envify": "~1.2.0",
     "reactify": "~0.4.0",
-    "coffee-reactify": "~> 0.1.2",
     "statics": "~0.1.0",
     "uglify-js": "~2.4.13",
     "vinyl-source-stream": "~0.1.1",
@@ -38,8 +37,7 @@
   "browserify": {
     "transform": [
       "reactify",
-      "envify",
-      "coffee-reactify"
+      "envify"
     ]
   }
 }

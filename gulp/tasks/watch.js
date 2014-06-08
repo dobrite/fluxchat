@@ -8,6 +8,6 @@ gulp.task('watch', function() {
     server.changed(file.path);
   };
 
-  gulp.watch('src/javascript/**', ['browserify']);
+  gulp.watch('src/javascripts/**', ['browserify']);
   gulp.watch(['public/**']).on('change', reload);
 });

@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-
 var FluxChatActions = require('../actions/FluxChatActions');
 
 var ENTER_KEY_CODE = 13;

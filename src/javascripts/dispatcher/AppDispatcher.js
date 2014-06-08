@@ -1,5 +1,4 @@
 var Dispatcher = require('./Dispatcher');
-
 var merge = require('react/lib/merge');
 
 var AppDispatcher = merge(Dispatcher.prototype, {

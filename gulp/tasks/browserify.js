@@ -5,14 +5,10 @@ var source = require('vinyl-source-stream');
 
 gulp.task('browserify', function(){
   return browserify({
-    entries: ['./src/javascript/app.coffee'],
-    extensions: [
-      '.coffee',
-      '.cjsx',
-    ]
+    entries: ['./src/javascripts/app.js'],
   })
   .bundle({debug: true})
   .on('error', handleErrors)
   .pipe(source('app.js'))
-  .pipe(gulp.dest('./public/javascript/'));
+  .pipe(gulp.dest('./public/javascripts/'));
 });
